@@ -2,6 +2,10 @@
 #include <fstream>
 #include <cstring>
 #include <iomanip>
+#include <time.h>
+
+//DO ADD RAND/FINISH COLLISION/DO DELETE
+
 
 using namespace std;
 
@@ -10,7 +14,7 @@ struct student {
     char lastName[20];
     float gpa;
     int id;
-    student* next; //sets next and prev so we can go back and forth between the nodes easier
+    student* next; //sets next so we can go to next studnet in the linked list
 };
 
 void add(student* newStudent, student** hashtable, int &size);
@@ -95,9 +99,21 @@ void add(student* newStudent, student** hashtable, int &size) {
 		}
 		//on fourth collision
 		else {
-			//create new size
-			size = size * 2;
 			student** temp = new student * [size];	
+			for (int i = 0; i < size; i++) {
+				temp[i] = hashtable[i];
+			}
+			size = size * 2;
+			hashtable = new student * [size];
+			for (int i = 0; i < size; i++) {
+				hashtable[i] = NULL;
+			}
+			for (int i = 0; i < size; i++) {
+				if (temp[i] != NULL) {
+					if (temp[i] -> next != NULL) {
+					}
+				}
+			}
 		}
 	}
 }
@@ -109,6 +125,14 @@ void print(student** hashtable, int size) {
 			cout << "Last Name: " << hashtable[i] -> lastName << endl;
 			cout << "ID: " << hashtable[i] -> id << endl;
 			cout << "GPA: " << hashtable[i] -> gpa << endl;
+			student* next = hashtable[i]->next;
+			if (next != NULL) {
+				cout << "First Name: " << next -> firstName << endl;
+				cout << "Last Name: " << next -> lastName << endl;
+				cout << "ID: " << next -> id << endl;
+				cout << "GPA: " << next -> gpa << endl;
+			}
 		}
+
 	}
 }
