@@ -1,3 +1,7 @@
+// Kevin Yu
+//2/27/23
+//Add student print delete student
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
